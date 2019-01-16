@@ -23,7 +23,8 @@
     <input type="file" id="file-chooser" />
 
 
-    <button id="upload-button" style="display:none">Upload to S3</button>
+    <!-- <button id="upload-button" style="display:none">Upload to S3</button> -->
+    <button id="upload-button" type="button" >Upload to S3</button>
 
 
     <div id="results"></div>
@@ -82,6 +83,8 @@
 
         button.addEventListener('click', function () {
 
+            console.log( "Got to addEventListener" );
+
 
             var file = fileChooser.files[0];
 
@@ -122,6 +125,7 @@
 
                 bucket.putObject(params, function (err, data) {
 
+                    console.log( "Entering bucket.putObject" );
 
                     if (err) {
 
