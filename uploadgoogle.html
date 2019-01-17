@@ -59,7 +59,11 @@
       console.log( "*****************************") 
 
       // Will this work?
-      googleUserId = response.authResponse.userID;
+      //googleUserId = response.authResponse.userID;
+      //No. there's no userID in the google response
+      //Will this work?
+      googleUserId = response.authResponse.authuser;
+
 
       s3 = new AWS.S3();
 
