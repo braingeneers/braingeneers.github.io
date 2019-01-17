@@ -18,9 +18,10 @@
 
   <p>Before the script...</p>
 
-  <script>
+<!--  <script>
     alert( 'Executing Javascript Before google script' );
   </script>
+-->
 
 <span
   id="login"
@@ -52,6 +53,10 @@
       AWS.config.credentials = new AWS.WebIdentityCredentials({
         RoleArn: roleArn, WebIdentityToken: response.id_token
       });
+
+      console.log( "******** Response ************") 
+      console.log( response )
+      console.log( "*****************************") 
 
       // Will this work?
       googleUserId = response.authResponse.userID;
