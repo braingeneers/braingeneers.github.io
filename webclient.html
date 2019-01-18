@@ -1,17 +1,45 @@
 <!DOCTYPE HTML>
 <html>
+<head>
+
+<!-- required from google -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
+
+<meta name="google-signin-client_id" content="19694729020-d0e12hlevsj5qk1c1h8s4sadmcr63mj1.apps.googleusercontent.com">
+
+</head>
 
 <body>
 
   <p>Before the script...</p>
 
+<!--  
   <script>
     alert( 'Webclient script ' );
   </script>
+-->
 
+<!-- signin button -->
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<!-- signout button -->
+<a href="#" onclick="signOut();">Sign out</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+</script>
   <p>After the script...</p>
 
 
 </body>
 
 </html>
+
+
+
