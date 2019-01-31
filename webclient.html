@@ -15,7 +15,9 @@
 
 <body>
 
+<!--
   <p>Before the script...</p>
+-->
 
 <!--  
   <script>
@@ -28,7 +30,7 @@
 
 <!-- signout button -->
 <a href="#" onclick="signOut();">Sign out</a>
-
+<br>
 
 <!-- signup button -->
 <a href="#" onclick="signUp();">Sign Up</a>
@@ -53,6 +55,9 @@ function onSignIn(googleUser) {
 
 
 function signUp(googleUser) {
+
+    var AmazonCognitoIdentity = require('amazon-cognito-identity-js'); //cph
+
     /*var poolData = { UserPoolId : 'us-east-1_TcoKGbf7n',
         ClientId : '4pe2usejqcdmhi0a25jp4b5sh3'
     };
