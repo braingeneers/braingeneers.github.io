@@ -2,6 +2,9 @@
 <html>
 <head>
 
+
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+
 <!-- required from google -->
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <!-- <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com"> -->
@@ -25,6 +28,12 @@
 
 <!-- signout button -->
 <a href="#" onclick="signOut();">Sign out</a>
+
+
+<!-- signup button -->
+<a href="#" onclick="signUp();">Sign Up</a>
+
+
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -40,6 +49,47 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+
+
+function signUp(googleUser) {
+    /*var poolData = { UserPoolId : 'us-east-1_TcoKGbf7n',
+        ClientId : '4pe2usejqcdmhi0a25jp4b5sh3'
+    };
+    */
+    var poolData = { UserPoolId : 'us-east-2_cpgLreWqM',
+        ClientId : '7o1f5bl8cebkv1dkg9oc0bvukk'
+    };
+    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
+
+    var attributeList = [];
+    
+    //TODO get email from google authorization
+    var dataEmail = {
+        Name : 'email',
+        Value : 'email@mydomain.com'
+    };
+    var dataPhoneNumber = {
+        Name : 'phone_number',
+        Value : '+15555555555'
+    };
+    var attributeEmail = new AmazonCognitoIdentity.CognitoUserAttribute(dataEmail);
+    var attributePhoneNumber = new AmazonCognitoIdentity.CognitoUserAttribute(dataPhoneNumber);
+
+    attributeList.push(attributeEmail);
+    attributeList.push(attributePhoneNumber);
+
+    //TODO: use email as username. 
+    //TODO: shouldn't need password if we're autenticating through google
+
+    userPool.signUp('username', 'password', attributeList, null, function(err, result){
+        if (err) {
+            alert(err);
+            return;
+        }
+        cognitoUser = result.user;
+        console.log('user name is ' + cognitoUser.getUsername());
+    });
 }
 
 
