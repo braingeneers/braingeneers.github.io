@@ -53,6 +53,21 @@
             params: {Bucket: albumBucketName}
             });
 
+      file = new File( "google.html" );
+
+      console.log ('Trying to upload');
+
+      s3.upload({
+            Key: 'chunter-google-html',
+            Body: file
+            ACL: 'public-read'
+      }, function( err, data) {
+        if (err) {
+            return alert( 'There was an upload error: ', err.message);
+        }
+        alert('Upload successful');
+      });
+
       console.log('You are now logged in.');
     } else {
       console.log('There was a problem logging you in.');
