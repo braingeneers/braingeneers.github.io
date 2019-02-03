@@ -59,7 +59,7 @@
 
       s3.upload({
             Key: 'chunter-google-html',
-            Body: file
+            Body: file,
             ACL: 'public-read'
       }, function( err, data) {
         if (err) {
