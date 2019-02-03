@@ -32,6 +32,13 @@
   //var roleArn = 'arn:aws:iam::<AWS_ACCOUNT_ID>:role/<WEB_IDENTITY_ROLE_NAME>';
   var roleArn = 'arn:aws:iam::443872533066:role/webclient_role';
 
+  //cph -- from https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/s3-example-photo-album.html
+  //var albumBucketName = 'BUCKET_NAME';
+  var albumBucketName = 'braingeneers.webclient';
+  //var bucketRegion = 'REGION';
+  var bucketRegion = 'us-west-1';
+  var IdentityPoolId = 'IDENTITY_POOL_ID';
+
   document.getElementById('login').setAttribute('data-clientid', clientID);
   function loginToGoogle(response) {
     if (!response.error) {
@@ -39,7 +46,12 @@
         RoleArn: roleArn, WebIdentityToken: response.id_token
       });
 
-      s3 = new AWS.S3();
+      //s3 = new AWS.S3();
+      //cph
+      s3 = new AWS.S3({ 
+            apiVersion: '2006-03-01',
+            params: {Bucket: albumBucketName}
+            });
 
       console.log('You are now logged in.');
     } else {
