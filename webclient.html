@@ -43,6 +43,8 @@ var brain = {
 }
 
 //promise
+//can attach a done handler if you want to perform actions after you 
+//log in.
 brain.identity = new $.Deferred();
 
 //We have to refresh the AWS credentials after updating
@@ -90,6 +92,15 @@ function onSignIn(googleUser) {
       }
     })
   })
+
+  brain.awsRefresh().then(function(id){
+    brain.identity.resolve({
+      id: id,
+      email: googleUser.getBasicProfile().getEmail(),
+      refresh: refresh
+    });
+  });
+
   //Refresh a token after it expires 
   //usually in response to a failed request
   //so we don't have to recreate the  
