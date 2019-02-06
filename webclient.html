@@ -42,6 +42,25 @@ var brain = {
   poolId: 'us-east-2:bc0dfdac-c366-4d3c-bb42-3ea54707a2b7'
 }
 
+//promise
+brain.identity = new $.Deferred();
+
+//We have to refresh the AWS credentials after updating
+//the Google token ID, so chain these together 
+//This uses promises (Deferred) in jquery instead of 
+//as part of JavaScript for historical reasons  
+brain.awsRefresh= function(){
+  var deferred = new $.Deferred(); 
+  AWS.config.credentials.refresh(function(err){
+    if (err) {
+      deferred.reject(err);
+    } else {
+      deferred.resolve(AWS.config.credentials.identityId);
+    }
+  });
+  return deferred.promise();
+}
+
 
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
@@ -71,6 +90,21 @@ function onSignIn(googleUser) {
       }
     })
   })
+  //Refresh a token after it expires 
+  //usually in response to a failed request
+  //so we don't have to recreate the  
+  function refresh() {
+    //can update token with this signIn call 
+    //the login prompt prevents needless reauths 
+    return gapi.auth2.getAuthInstance().signIn({
+      prompt: 'login' 
+    }).then(function(userUpdate) {
+    var creds = AWS.config.credentials;
+    var newToken = userUpdate.getAuthResponse().id_token;
+    creds.params.Logins['accounts.google.com'] = newToken;
+    return brain.awsRefresh();
+    });
+  }
 }
 
 
