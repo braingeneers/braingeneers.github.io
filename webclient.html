@@ -95,14 +95,6 @@ function onSignIn(googleUser) {
     })
   })
 
-  brain.awsRefresh().then(function(id){
-    brain.identity.resolve({
-      id: id,
-      email: googleUser.getBasicProfile().getEmail(),
-      refresh: refresh
-    });
-  });
-
   //Refresh a token after it expires 
   //usually in response to a failed request
   //so we don't have to recreate the  
@@ -118,6 +110,14 @@ function onSignIn(googleUser) {
     return brain.awsRefresh();
     });
   }
+
+  brain.awsRefresh().then(function(id){
+    brain.identity.resolve({
+      id: id,
+      email: googleUser.getBasicProfile().getEmail(),
+      refresh: refresh
+    });
+  });
 }
 
 
