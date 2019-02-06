@@ -37,6 +37,12 @@
 
 
 <script>
+// Local namespace object
+var brain = {
+  poolId: 'us-east-2:bc0dfdac-c366-4d3c-bb42-3ea54707a2b7'
+}
+
+
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
@@ -52,8 +58,24 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
   console.log('ID Token: ' + googleUser.getAuthResponse().id_token ); // 
+  console.log('Token Expires: ' + googleUser.getAuthResponse().expires_in ); //also expires_at 
+
+  //Now send identity pool id and token to Cognito to create identity     
+  var id_token = googleUser.getAuthResponse().id_token;   
+  AWS.config.update({ 
+    region: 'us-east-2', 
+    credentials: new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: brain.poolId, 
+      Logins: {
+        'accounts.google.com': id_token
+      }
+    })
+  })
 }
 
+
+//This says the signinCallback is deprecated: 
+//https://developers.google.com/identity/sign-in/web/quick-migration-guide
 
 function signinCallback(authResult) {
   console.log( '******signinCallback called !!!******');
@@ -123,7 +145,7 @@ function signUp(googleUser) {
 
 
 </script>
-  <p>After the script...</p>
+  <!--<p>After the script...</p>-->
 
 
 </body>
