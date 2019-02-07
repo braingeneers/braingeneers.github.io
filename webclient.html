@@ -99,6 +99,22 @@ function onSignIn(googleUser) {
   console.log( AWS.config.credentials) 
 
 
+  //From  https://docs.aws.amazon.com/cognito/latest/developerguide/getting-credentials.html  
+
+  AWS.config.credentials.get(function(){
+
+    // Credentials will be available when this function is called.
+    var accessKeyId = AWS.config.credentials.accessKeyId;
+    var secretAccessKey = AWS.config.credentials.secretAccessKey;
+    var sessionToken = AWS.config.credentials.sessionToken;
+
+});   
+
+       
+  var identityId = AWS.config.credentials.identityId;
+  console.log( "AWS identity id:" + identityId )   
+ 
+
 
 
   //Refresh a token after it expires 
