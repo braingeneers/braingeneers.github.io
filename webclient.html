@@ -105,8 +105,14 @@ function onSignIn(googleUser) {
 
     // Credentials will be available when this function is called.
     var accessKeyId = AWS.config.credentials.accessKeyId;
+    console.log( "accessKeyId:" + accessKeyId)   
+
     var secretAccessKey = AWS.config.credentials.secretAccessKey;
+    console.log( "secretAccessKey:" + secretAccessKey)   
+
     var sessionToken = AWS.config.credentials.sessionToken;
+    console.log( "sessionToken:" + sessionToken)   
+
     console.log( "Got credentials!!!!" )   
 
     var identityId = AWS.config.credentials.identityId;
