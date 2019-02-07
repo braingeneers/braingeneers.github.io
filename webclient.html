@@ -113,7 +113,8 @@ function onSignIn(googleUser) {
     var sessionToken = AWS.config.credentials.sessionToken;
     console.log( "sessionToken:" + sessionToken)   
 
-    console.log( "Got credentials!!!!" )   
+    var sessionToken = AWS.config.credentials.expired;
+    console.log( "expired:" + expired)   
 
     var identityId = AWS.config.credentials.identityId;
     console.log( "AWS identity id:" + identityId )   
