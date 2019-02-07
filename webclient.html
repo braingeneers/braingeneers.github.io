@@ -95,6 +95,12 @@ function onSignIn(googleUser) {
     })
   })
 
+  console.log( "**********AWS Credentials:**********" ) 
+  console.log( AWS.config.credentials) 
+
+
+
+
   //Refresh a token after it expires 
   //usually in response to a failed request
   //so we don't have to recreate the  
