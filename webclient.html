@@ -107,12 +107,16 @@ function onSignIn(googleUser) {
     var accessKeyId = AWS.config.credentials.accessKeyId;
     var secretAccessKey = AWS.config.credentials.secretAccessKey;
     var sessionToken = AWS.config.credentials.sessionToken;
+    console.log( "Got credentials!!!!" )   
+
+    var identityId = AWS.config.credentials.identityId;
+    console.log( "AWS identity id:" + identityId )   
 
 });   
 
        
-  var identityId = AWS.config.credentials.identityId;
-  console.log( "AWS identity id:" + identityId )   
+  //var identityId = AWS.config.credentials.identityId;
+  //console.log( "AWS identity id:" + identityId )   
  
 
 
