@@ -1,0 +1,21 @@
+{
+  "name": "treehouse-receiving",
+  "version": "1.0.0",
+  "description": "Simple as possible, but no simpler, upload to Treehouse",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:UCSC-Treehouse/receiving.git"
+  },
+  "author": "Rob Currie",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "reload": "^1.1.7"
+  }
+}
