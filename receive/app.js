@@ -9,8 +9,9 @@ function signIn(response) {
 
   $("#name").html(grx.name);
   $("#email").html(grx.email);
+  //old roleArn: "arn:aws:iam::238605363322:role/receiving-browser-role",
   grx.assumeRoleWithWebIdentity({
-    roleArn: "arn:aws:iam::238605363322:role/receiving-browser-role",
+    roleArn: "arn:aws:iam::443872533066:role/receiving-browser-role",
     idToken: response.getAuthResponse().id_token,
   });
   $("#fine-uploader").show();
@@ -70,13 +71,14 @@ function updateCredentials(error, data) {
 }
 
 // eslint-disable-next-line prefer-arrow-callback
+// old endpoint: "https://receiving-treehouse-ucsc-edu.s3-us-west-2.amazonaws.com",
 $(document).ready(function() {
   grx.assumeRoleWithWebIdentity = assumeRoleWithWebIdentity;
   grx.getFuCredentials = getFuCredentials;
 
   $("#fine-uploader").fineUploaderS3({
     request: {
-      endpoint: "https://receiving-treehouse-ucsc-edu.s3-us-west-2.amazonaws.com",
+      endpoint: "https://braingeneers-receiving.s3-us-west-2.amazonaws.com",
       // these are undefined at this point but should fill in just in case tags get lost
       // params: {
       //   email: grx.email,
