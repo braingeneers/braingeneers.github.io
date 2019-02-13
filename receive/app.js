@@ -90,7 +90,8 @@ $(document).ready(function() {
       key: function (id) {
         // return this.getUuid(id);
         // eslint-disable-next-line no-undef
-        return qq.format("{}/{}", grx.email, this.getName(id));
+        //return qq.format("{}/{}", grx.email, this.getName(id));
+        return qq.format("{}", this.getName(id)); //removed email from path (see above)
       },
     },
     cors: {
