@@ -91,7 +91,11 @@ $(document).ready(function() {
         // return this.getUuid(id);
         // eslint-disable-next-line no-undef
         //return qq.format("{}/{}", grx.email, this.getName(id));
-        return qq.format("{}", this.getName(id)); //removed email from path (see above)
+
+        uuid = uuidv4(); 
+
+        //return qq.format("{}", this.getName(id)); //removed email from path (see above)
+        return qq.format("{}", uuid + this.getName(id)); 
       },
     },
     cors: {
