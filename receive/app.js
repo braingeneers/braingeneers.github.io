@@ -94,8 +94,8 @@ $(document).ready(function() {
 
         uuid = uuidv4(); 
 
-        //return qq.format("{}", this.getName(id)); //removed email from path (see above)
-        return qq.format("{}", uuid + this.getName(id)); 
+        return qq.format("{}", this.getName(id)); //removed email from path (see above)
+        //return qq.format("{}", uuid + this.getName(id)); // back this out temp. in case someone is using old style. 
       },
     },
     cors: {
