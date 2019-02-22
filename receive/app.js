@@ -92,7 +92,7 @@ $(document).ready(function() {
         // eslint-disable-next-line no-undef
         //return qq.format("{}/{}", grx.email, this.getName(id));
 
-        uuid = uuidv4(); 
+        //uuid = uuidv4(); //Not using the uuid for now
 
         return qq.format("{}", this.getName(id)); //removed email from path (see above)
         //return qq.format("{}", uuid + this.getName(id)); // back this out temp. in case someone is using old style. 
